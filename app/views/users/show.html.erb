@@ -1,0 +1,14 @@
+<center><h1> Your page </h1></center>
+
+<center><h2>User : <%= @user.id %></h2><center>
+
+<center>
+
+Username: <%= @user.username %><br/>
+Email: <%= @user.email %><br/><br/>
+Gender: <%= @user.profile.gender %><br/>
+Birth Date: <%= @user.profile.birth_date %><br/>
+About me: <%= @user.profile.about_me %><br/>
+
+<%= link_to 'Edit your profile', edit_profile_path(@user.profile.id) %><br/>
+</center>

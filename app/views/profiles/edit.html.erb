@@ -1,0 +1,20 @@
+<center><h1>You profile settings</h1>
+
+<% if @profile.errors.any?  %>
+<% @profile.errors.full_messages.each do |msg| %>
+  <li><%= msg %></li>
+<% end %>
+<% end %>
+
+<%= form_for @profile do |f| %><br/>
+  <%= f.label :gender %><br/>
+  <%= f.select :gender,  Profile::GENDER_TYPES %><br/>
+  <%= f.label :birth_date %><br/>
+  <%= f.date_select :birth_date, :start_year=>1950,:end_year=>2017%><br/>
+  <%= f.label :about_me %><br/>
+  <%= f.text_area :about_me %></br>
+
+  <%= f.submit %>
+<% end %>
+
+</center>
