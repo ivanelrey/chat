@@ -32,8 +32,10 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
  gem 'bcrypt', '~> 3.1.7'
 
- #carrierwave 
+ # carrierwave image uploader
  gem 'carrierwave', '~> 1.0'
+ # image resizer 
+ gem 'mini_magick', '~> 4.6', '>= 4.6.1'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

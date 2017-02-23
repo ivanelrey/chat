@@ -9,6 +9,10 @@ Email: <%= @user.email %><br/><br/>
 Gender: <%= @user.profile.gender %><br/>
 Birth Date: <%= @user.profile.birth_date %><br/>
 About me: <%= @user.profile.about_me %><br/>
+Your profile image:  
+<% if @user.profile.avatar? %>
+<br/><%= image_tag @user.profile.avatar_url %><br/>
+<% end %>
 
 <%= link_to 'Edit your profile', edit_profile_path(@user.profile.id) %><br/>
 </center>
