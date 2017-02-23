@@ -13,5 +13,10 @@
     <div class="alert alert-<%= key %>"><%= value %></div>
   <% end %>
     <%= yield %>
+
+    <% if logged_in? %>
+    <%= link_to 'Log out', logout_path, method: :delete %>
+    <% end %>
+
   </body>
 </html>
