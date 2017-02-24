@@ -1,0 +1,16 @@
+<h1>All registered users</h1>
+<% @users.each do |user|%>
+	<ul>
+		<li>
+			username: <%= user.username %> ||
+			id: <%= user.id %> ||
+			<!--birth date: < % =#user. p rofile.birth_date %>-->
+			<%= link_to 'Show profile', user_path(user.id) %> || 
+
+			<%= #link_to 'Add friend', user_path(user.id) %> ||
+
+
+		</li>
+	</ul>
+<% end %>
+<%= link_to 'Back to your profile', user_path(current_user.id) %><br/>

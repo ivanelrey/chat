@@ -1,0 +1,16 @@
+<center>
+<h1>Here are your friend list</h1>
+
+<% @friends.each do |friend| %>
+	<ul>
+		<li>
+			username: <%= friend.username %> ||
+			id: <%= friend.id %> ||
+			birth date: <%= friend.profile.birth_date %>
+			<%= link_to 'Show profile', user_path(friend.id) %>
+		</li>
+	</ul>
+<% end %>
+
+<%= link_to 'Back to your profile', user_path(current_user.id) %><br/>
+</center>

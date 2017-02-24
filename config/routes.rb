@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   root 'home#index'
   resources 'users'
   resources 'profiles'
+  resources 'friendships'#, :except => [ :create ]
+  #post "/friendship/:user_id/:friend_id" => "friendships#create"
 
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'

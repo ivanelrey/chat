@@ -14,14 +14,21 @@ Your profile image:
 <br/><%= image_tag @user.profile.avatar_url %><br/>
 <% end %>
 
-<%= link_to 'Edit your profile', edit_profile_path(@user.profile.id) %><br/>
+
 <br/>
-<% @friends.each do |friend| %>
+
+<!-- <% @friends.each do |friend| %>
 <ul>
 	<li>
 		<%= friend.username %>
 	</li>
 </ul>
-
+<% end %> -->
+<% if logged_in? && current_user == @user %>
+<%= link_to 'Edit your profile', edit_profile_path(@user.profile.id) %><br/>
+<%= link_to 'Your friends', friendships_path %><br/>
+<%= link_to 'All users', users_path %><br/>
+<% else %>
+<%= link_to 'Back to your profile', user_path(current_user.id) %><br/>
 <% end %>
 </center>

@@ -1,9 +1,12 @@
 class UsersController < ApplicationController
 
+	def index
+		@users = User.all.where("id != ?", current_user.id)
+	end
+
 	def show
 		@user = User.find(params[:id])
-		@friends =  @user.inverse_friends   
-		@friends << @user.friends  
+		@friends =  @user.inverse_friends + @user.friends 
 	end
 
 	def new
@@ -25,4 +28,5 @@ class UsersController < ApplicationController
 	def user_params
 		params.require(:user).permit(:username,:email,:password)
 	end
+
 end
