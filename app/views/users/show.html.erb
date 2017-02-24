@@ -15,4 +15,13 @@ Your profile image:
 <% end %>
 
 <%= link_to 'Edit your profile', edit_profile_path(@user.profile.id) %><br/>
+<br/>
+<% @friends.each do |friend| %>
+<ul>
+	<li>
+		<%= friend.username %>
+	</li>
+</ul>
+
+<% end %>
 </center>

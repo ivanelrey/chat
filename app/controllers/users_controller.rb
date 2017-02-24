@@ -2,6 +2,8 @@ class UsersController < ApplicationController
 
 	def show
 		@user = User.find(params[:id])
+		@friends =  @user.inverse_friends   
+		@friends << @user.friends  
 	end
 
 	def new
@@ -12,6 +14,7 @@ class UsersController < ApplicationController
 		@user = User.new(user_params)
 		if @user.save && @user.build_profile.save
 			flash[:notice] = "You have created an account"
+			session[:user_id] = @user.id
 			redirect_to user_path(@user)
 		else
 			render 'new'
