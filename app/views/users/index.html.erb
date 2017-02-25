@@ -6,8 +6,19 @@
 			id: <%= user.id %> ||
 			<!--birth date: < % =#user. p rofile.birth_date %>-->
 			<%= link_to 'Show profile', user_path(user.id) %> || 
-
-			<%= #link_to 'Add friend', user_path(user.id) %> ||
+			<% if friendship_request_sent?(user)  %>
+				<% if  friendship_request_accepted?(user.id) %>
+			 		<span>You are friends</span>
+			 	<% elsif friendship_request_accepted?(user.id) == false %>
+			 		<% if user.in?current_user.friends %>
+			 			<span>Pending</span>
+			 		<% elsif current_user.in?user.friends %>
+			 			<%= link_to 'accept request', friendships_update_friendship_path(friend_id: user.id), method: :post %>
+			 		<% end %>
+			 	<% end %>
+			<% else %>
+			<%= link_to 'add friend', friendships_path(:user_id => current_user.id, :friend_id => user.id), method: :post %>
+			<% end %> 
 
 
 		</li>

@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :logged_in?, :current_user
+  helper_method :logged_in?, :current_user, :friendship_request_sent?, :friendship_request_accepted?
 
   def current_user
   	  @current_user ||= User.find(session[:user_id])	if session[:user_id] #return @current_user if exists otherwise find from session and the return it 
@@ -15,5 +15,25 @@ class ApplicationController < ActionController::Base
   		flash[:danger] = "You must be logged in to perform that action"
   		redirect_to root_path
   	end
+  end
+
+  def friendship_request_sent?(user)
+    if current_user.friends.include?(user) || current_user.inverse_friends.include?(user)
+    #if Friendship.all.where(user_id: current_user.id, friend_id: user.id) || Friendship.all.where(user_id: user.id, friend_id: current_user.id)
+      true
+    else
+      false
+    end
+  end
+
+  def friendship_request_accepted?(user_id)
+    @friendship_accepted = Friendship.all.where(user_id: current_user.id, friend_id: user_id, confirmed: true) 
+    @inverse_friendship_accepted = Friendship.all.where(user_id: user_id, friend_id: current_user.id, confirmed: true)
+      #if user.in?current_user.friends || user.in?current_user.inverse_friends
+      if @friendship_accepted.exists? or @inverse_friendship_accepted.exists?
+      true
+    else
+      false
+    end
   end
 end

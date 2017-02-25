@@ -24,7 +24,7 @@ Your profile image:
 	</li>
 </ul>
 <% end %> -->
-<% if logged_in? && current_user == @user %>
+<% if (logged_in? && current_user == @user) %>
 <%= link_to 'Edit your profile', edit_profile_path(@user.profile.id) %><br/>
 <%= link_to 'Your friends', friendships_path %><br/>
 <%= link_to 'All users', users_path %><br/>

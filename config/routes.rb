@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources 'users'
   resources 'profiles'
   resources 'friendships'#, :except => [ :create ]
-  #post "/friendship/:user_id/:friend_id" => "friendships#create"
+  post "/friendships/update_friendship" => "friendships#update_friendship"
 
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
