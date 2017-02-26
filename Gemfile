@@ -36,6 +36,10 @@ gem 'jbuilder', '~> 2.5'
  gem 'carrierwave', '~> 1.0'
  # image resizer 
  gem 'mini_magick', '~> 4.6', '>= 4.6.1'
+ #for template
+ gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
+ gem 'font-awesome-sass', '~> 4.7'
+ gem "jquery-ui-rails"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

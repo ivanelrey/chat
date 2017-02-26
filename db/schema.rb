@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170224154125) do
+ActiveRecord::Schema.define(version: 20170226163245) do
 
   create_table "friendships", force: :cascade do |t|
     t.integer  "user_id"
@@ -18,6 +18,15 @@ ActiveRecord::Schema.define(version: 20170224154125) do
     t.boolean  "confirmed"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "languages", force: :cascade do |t|
+    t.string "language"
+  end
+
+  create_table "languages_users", id: false, force: :cascade do |t|
+    t.integer "user_id",     null: false
+    t.integer "language_id", null: false
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -34,6 +43,14 @@ ActiveRecord::Schema.define(version: 20170224154125) do
     t.string   "password_digest"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+  end
+
+  create_table "users_learn_languages", id: false, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "language_id"
+    t.index ["language_id"], name: "index_users_learn_languages_on_language_id"
+    t.index ["user_id", "language_id"], name: "users_learn_languages_index", unique: true
+    t.index ["user_id"], name: "index_users_learn_languages_on_user_id"
   end
 
 end

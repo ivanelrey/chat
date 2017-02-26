@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   resources 'friendships'#, :except => [ :create ]
   post "/friendships/update_friendship" => "friendships#update_friendship"
 
+  resources 'languages'
+
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
