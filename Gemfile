@@ -40,7 +40,12 @@ gem 'jbuilder', '~> 2.5'
  gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
  gem 'font-awesome-sass', '~> 4.7'
  gem "jquery-ui-rails"
-
+ 
+# Use this to output information about countries
+gem 'countries'
+gem 'country_select'
+#find location from ip
+gem 'geocoder'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

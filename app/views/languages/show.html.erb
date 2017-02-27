@@ -1,0 +1,19 @@
+<center><h1>Languages you are learning</h1></center>
+<% @learn_languages.each do |lang| %>
+<ul>
+	<% if user_learns_language?(lang.id) %>
+	<li>
+	<i class="fa fa-check" aria-hidden="true"></i>
+        <%= h lang.language %>
+ 		<%= link_to 'remove', users_learn_languages_remove_user_learns_language_path(:remove_language_id => lang.id ), method: :post%>
+    </li>
+    <% else %>
+    <li>
+        <i class="fa fa-times" aria-hidden="true"></i>
+        <%= h lang.language %>
+        <%= link_to 'add', users_learn_languages_add_user_learns_language_path(:add_language_id => lang.id ), method: :post%>
+    </li>
+    <% end %>
+</ul>
+<% end %>
+<center><%= link_to 'Back to your profile', user_path(current_user.id) %><br/></center>

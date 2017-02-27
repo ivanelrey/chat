@@ -7,6 +7,8 @@ class UsersController < ApplicationController
 	def show
 		@user = User.find(params[:id])
 		@friends =  @user.inverse_friends + @user.friends 
+		@from_country = ISO3166::Country[@user.profile.from_country]
+		@from_country.translations[I18n.locale.to_s] || country.name
 	end
 
 	def new

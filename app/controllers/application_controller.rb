@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :logged_in?, :current_user, :friendship_request_sent?, :friendship_request_accepted?
+  helper_method :logged_in?, :current_user, :friendship_request_sent?, :friendship_request_accepted?, 
+                :user_knows_language?, :user_learns_language?
 
   def current_user
   	  @current_user ||= User.find(session[:user_id])	if session[:user_id] #return @current_user if exists otherwise find from session and the return it 
@@ -31,6 +32,24 @@ class ApplicationController < ActionController::Base
     @inverse_friendship_accepted = Friendship.all.where(user_id: user_id, friend_id: current_user.id, confirmed: true)
       #if user.in?current_user.friends || user.in?current_user.inverse_friends
       if @friendship_accepted.exists? or @inverse_friendship_accepted.exists?
+      true
+    else
+      false
+    end
+  end
+
+  def user_knows_language?(language_id)
+    @knows_languages = current_user.languages.where(id: language_id)
+    if @knows_languages.exists?
+      true
+    else
+      false
+    end
+  end
+
+  def user_learns_language?(language_id)
+    @knows_languages = current_user.learn_languages.where(id: language_id)
+    if @knows_languages.exists?
       true
     else
       false

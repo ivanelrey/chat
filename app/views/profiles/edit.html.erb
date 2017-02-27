@@ -13,9 +13,10 @@
   <%= f.date_select :birth_date, :start_year=>1950,:end_year=>2017%><br/>
   <%= f.label :about_me %><br/>
   <%= f.text_area :about_me %></br>
+  <%= f.label :from_country %><br/>
+  <%= f.country_select :from_country %></br>
   <%= f.label :avatar %><br/>
   <%= f.file_field :avatar, accept: 'image/png,image/jpeg,image/jpg'%>
-
   <%= f.submit %>
 <% end %>
 
