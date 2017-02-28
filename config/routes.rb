@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   post "/users_learn_languages/remove_user_learns_language" => "users_learn_languages#remove_user_learns_language"
   post "/users_learn_languages/add_user_learns_language" => "users_learn_languages#add_user_learns_language"
 
+  resources 'visited_countries'
+
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'

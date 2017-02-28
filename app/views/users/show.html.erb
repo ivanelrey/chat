@@ -114,14 +114,21 @@
             </aside><!--//aside-->      
             <aside class="skills aside section">
                 <div class="section-inner">
-                    <h2 class="heading">Visited Countries</h2>
+                    <h2 class="heading">Visited Countries 
+                    <button onclick="javascript:showVisitedCountryEdit();">
+                    <i class="fa fa-cog" aria-hidden="true"></i>
+                    </button>
+                    </h2>
                     <div class="content">
                         <!-- list of countries-->  
                         <ul class="list-unstyled">
                             <li class="item">
                                 <span class="title"><strong>England</strong></span><br/>
                                 <span class="title"><strong>Spain</strong></span><br/>
-                                <span class="title"><strong>Greece</strong></span>
+                                <span class="title"><strong>Greece</strong></span><br/>
+                                <div id="visited_countries" style="display: none;">
+                                    <span class="title"><strong>This is text</strong></span><br/>
+                                </div>
                             </li><!--//item-->
                             
                         </ul>           
@@ -186,3 +193,17 @@ Your profile image:
 <%= link_to 'Back to your profile', user_path(current_user.id) %><br/>
 <% end %> 
 </center>-->
+
+<script type="text/javascript">
+  function showVisitedCountryEdit() {
+
+    div = document.getElementById('visited_countries');
+    if(div.style.display == "none")
+    {
+        div.style.display = "block";
+    }
+    else{
+        div.style.display = "none";
+    }
+}
+</script>

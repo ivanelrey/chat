@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170227135328) do
+ActiveRecord::Schema.define(version: 20170228112053) do
 
   create_table "friendships", force: :cascade do |t|
     t.integer  "user_id"
@@ -53,6 +53,11 @@ ActiveRecord::Schema.define(version: 20170227135328) do
     t.index ["language_id"], name: "index_users_learn_languages_on_language_id"
     t.index ["user_id", "language_id"], name: "users_learn_languages_index", unique: true
     t.index ["user_id"], name: "index_users_learn_languages_on_user_id"
+  end
+
+  create_table "visited_countries", force: :cascade do |t|
+    t.integer "user_id"
+    t.string  "country"
   end
 
 end

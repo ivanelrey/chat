@@ -1,0 +1,3 @@
+class VisitedCountry < ApplicationRecord
+
+end
