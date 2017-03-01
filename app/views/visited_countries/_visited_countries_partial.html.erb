@@ -12,7 +12,7 @@
             <li class="item">
                 <div>
                     <% if @visited_countries.any? %>
-                        <%= render @visited_countries %>
+                        <%= render @visited_countries.order('country ASC') %>
                     <% else %>
                     Not set yet
                     <% end %>
@@ -25,10 +25,6 @@
                         <%= f.country_select :country %>
                         <%= f.submit %>
                     <% end %>
-
-                    <!--<%= country_select(nil, :country_code) %>
-
-                    <%= link_to 'save', visited_countries_add_country_path(:country_to_add => :selected_country), method: :post %>-->
                     
                 </div>
             </li><!--//item-->
@@ -38,12 +34,3 @@
 </div><!--//section-inner-->                 
 </aside><!--//section-->
 </div>
-
-<script type="text/javascript">
-	$(document).ready(
-         function() {
-          setInterval(function() {
-            $('.dynamic').load('/visited_countries/add_country');
-        }, 3000);
-    });
-</script>

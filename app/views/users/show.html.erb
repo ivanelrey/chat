@@ -112,8 +112,9 @@
                     </div><!--//content-->  
                 </div><!--//section-inner-->                 
             </aside><!--//aside-->  
-            <%= render :partial => 'visited_countries/visited_countries_partial' %>    
-            
+            <div class="dynamic">
+                <%= render :partial => 'visited_countries/visited_countries_partial' %>    
+            <div>
             <aside class="languages aside section">
                 <div class="section-inner">
                     <h2 class="heading">Languages</h2>
@@ -177,15 +178,22 @@ Your profile image:
   function showVisitedCountryEdit() {
 
     div = document.getElementById('visited_countries_add');
-    i = document.getElementById('visited_country_remove');
+    var dates = document.querySelectorAll('*[id^="visited_country_remove"]');
+
     if(div.style.display == "none")
     {
         div.style.display = "block";
-        i.style.opacity = 1;
+        for (i = 0; i < dates.length; i++)
+        {
+            dates[i].style.display = "inline-block";
+        }
     }
     else{
         div.style.display = "none";
-        i.style.opacity = 0.5;
+        for (i = 0; i < dates.length; i++)
+        {
+            dates[i].style.display = "none";
+        }
     }
 }
 </script>

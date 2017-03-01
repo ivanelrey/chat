@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
   resources 'visited_countries'
   post "visited_countries/add_country" => "visited_countries#add_country"
+  post "visited_countries/remove_country" => "visited_countries#remove_country"
 
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'

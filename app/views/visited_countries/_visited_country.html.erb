@@ -1,4 +1,12 @@
 <span class="title">
-<strong><%= ISO3166::Country[visited_country.country] %>
-	
-</strong></span> <i id="visited_country_remove" style="opacity: 0.5;" class="fa fa-times" aria-hidden="true"></i><br/>
+	<strong>
+		<%= ISO3166::Country[visited_country.country] %>
+	</strong>
+</span>
+<!-- <a href="/visited_countries/remove_country"><i id="visited_country_remove_<%= visited_country.country%>" style="opacity: 0" class="fa fa-times" aria-hidden="true">
+</i></a><br/>-->
+
+<%= link_to visited_countries_remove_country_path(visited_country: visited_country.country), method: :post do %>
+  <i id="visited_country_remove_<%= visited_country.country%>" style="display: none;" class="fa fa-times" aria-hidden="true">
+</i>
+<% end %><br/>

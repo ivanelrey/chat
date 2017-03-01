@@ -1,3 +1,3 @@
 class VisitedCountry < ApplicationRecord
-
+	
 end
