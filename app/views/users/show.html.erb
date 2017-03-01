@@ -104,37 +104,16 @@
                     <h2 class="heading sr-only">Basic Information</h2>
                     <div class="content">
                         <ul class="list-unstyled">
-                        	<li><i class="fa fa-globe" aria-hidden="true"></i><%= @from_country%></li>
+                        	<li><i class="fa fa-globe" aria-hidden="true"></i><%= ISO3166::Country[@user.profile.from_country]%></li>
                             <li><i class="fa fa-map-marker" aria-hidden="true"></i>last location</li>
                             <li><i class="fa fa-venus-mars" aria-hidden="true"></i><%= @user.profile.gender %></li>
                             <li><i class="fa fa-birthday-cake" aria-hidden="true"></i><%= @user.profile.birth_date %></li>
                         </ul>
                     </div><!--//content-->  
                 </div><!--//section-inner-->                 
-            </aside><!--//aside-->      
-            <aside class="skills aside section">
-                <div class="section-inner">
-                    <h2 class="heading">Visited Countries 
-                    <button onclick="javascript:showVisitedCountryEdit();">
-                    <i class="fa fa-cog" aria-hidden="true"></i>
-                    </button>
-                    </h2>
-                    <div class="content">
-                        <!-- list of countries-->  
-                        <ul class="list-unstyled">
-                            <li class="item">
-                                <span class="title"><strong>England</strong></span><br/>
-                                <span class="title"><strong>Spain</strong></span><br/>
-                                <span class="title"><strong>Greece</strong></span><br/>
-                                <div id="visited_countries" style="display: none;">
-                                    <span class="title"><strong>This is text</strong></span><br/>
-                                </div>
-                            </li><!--//item-->
-                            
-                        </ul>           
-                    </div><!--//content-->  
-                </div><!--//section-inner-->                 
-            </aside><!--//section-->
+            </aside><!--//aside-->  
+            <%= render :partial => 'visited_countries/visited_countries_partial' %>    
+            
             <aside class="languages aside section">
                 <div class="section-inner">
                     <h2 class="heading">Languages</h2>
@@ -197,13 +176,16 @@ Your profile image:
 <script type="text/javascript">
   function showVisitedCountryEdit() {
 
-    div = document.getElementById('visited_countries');
+    div = document.getElementById('visited_countries_add');
+    i = document.getElementById('visited_country_remove');
     if(div.style.display == "none")
     {
         div.style.display = "block";
+        i.style.opacity = 1;
     }
     else{
         div.style.display = "none";
+        i.style.opacity = 0.5;
     }
 }
 </script>

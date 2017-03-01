@@ -1,0 +1,49 @@
+<div class="dynamic">
+<aside class="skills aside section">
+<div class="section-inner">
+    <h2 class="heading">Visited Countries 
+    <button onclick="javascript:showVisitedCountryEdit();">
+    <i class="fa fa-cog" aria-hidden="true"></i>
+    </button>
+    </h2>
+    <div class="content">
+        <!-- list of countries-->  
+        <ul class="list-unstyled">
+            <li class="item">
+                <div>
+                    <% if @visited_countries.any? %>
+                        <%= render @visited_countries %>
+                    <% else %>
+                    Not set yet
+                    <% end %>
+                </div>
+                <div id="visited_countries_add" style="display: none;">
+                    
+                    <span class="title"><strong>Add a country</strong></span><br/>
+
+                    <%= form_for VisitedCountry.new, url: visited_countries_add_country_path, method: :post do |f| %>
+                        <%= f.country_select :country %>
+                        <%= f.submit %>
+                    <% end %>
+
+                    <!--<%= country_select(nil, :country_code) %>
+
+                    <%= link_to 'save', visited_countries_add_country_path(:country_to_add => :selected_country), method: :post %>-->
+                    
+                </div>
+            </li><!--//item-->
+            
+        </ul>           
+    </div><!--//content-->  
+</div><!--//section-inner-->                 
+</aside><!--//section-->
+</div>
+
+<script type="text/javascript">
+	$(document).ready(
+         function() {
+          setInterval(function() {
+            $('.dynamic').load('/visited_countries/add_country');
+        }, 3000);
+    });
+</script>

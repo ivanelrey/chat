@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   post "/users_learn_languages/add_user_learns_language" => "users_learn_languages#add_user_learns_language"
 
   resources 'visited_countries'
+  post "visited_countries/add_country" => "visited_countries#add_country"
 
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'

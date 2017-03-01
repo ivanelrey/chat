@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 	def show
 		@user = User.find(params[:id])
 		@friends =  @user.inverse_friends + @user.friends 
-		@from_country = ISO3166::Country[@user.profile.from_country]
+		@visited_countries = @user.visited_countries.all	
 	end
 
 	def new
