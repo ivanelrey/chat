@@ -1,0 +1,36 @@
+<aside class="info aside section">
+    <div class="section-inner">
+        <h2 class="heading">Basic Information
+        <% if (logged_in? && current_user == @user) %>
+        <button onclick="javascript:showUserProfileEdit();">
+        <i class="fa fa-cog" aria-hidden="true"></i>
+        </button>
+        <% end %>
+        </h2>
+        <div id="user_profile_info">
+        <div class="content">
+            <ul class="list-unstyled">
+            	<li><i class="fa fa-globe" aria-hidden="true"></i><%= ISO3166::Country[@user.profile.from_country]%></li>
+                <li><i class="fa fa-map-marker" aria-hidden="true"></i><%= ISO3166::Country[@user.profile.last_location] %></li>
+                <li><i class="fa fa-venus-mars" aria-hidden="true"></i><%= @user.profile.gender %></li>
+                <li><i class="fa fa-birthday-cake" aria-hidden="true"></i><%= @user.profile.birth_date %></li>
+            </ul>
+        </div><!--//content--> 
+        </div> 
+        <div id="user_profile_edit" style="display: none;">
+        <div class="content">
+            <%= form_for @user.profile, url: profiles_update_profile_path, method: :post, remote: :true do |f| %>
+                <li>Where are you from
+                <%= f.country_select :from_country %></li>
+                <li>What is your current location
+                <%= f.country_select :last_location %></li>
+                <li>Your gender
+                <%= f.select :gender,  Profile::GENDER_TYPES %></li>
+                <li>Your birth date
+                <%= f.date_select :birth_date, :start_year=>1950,:end_year=>2017%></li>
+                <%= f.submit %>
+            <% end %>
+        </div>
+        </div>
+    </div><!--//section-inner-->                 
+</aside><!--//aside--> 

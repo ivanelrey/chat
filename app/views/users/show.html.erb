@@ -99,22 +99,12 @@
             </section><!--//section-->     
         </div><!--//primary-->
         <div class="secondary col-md-4 col-sm-12 col-xs-12">
-             <aside class="info aside section">
-                <div class="section-inner">
-                    <h2 class="heading sr-only">Basic Information</h2>
-                    <div class="content">
-                        <ul class="list-unstyled">
-                        	<li><i class="fa fa-globe" aria-hidden="true"></i><%= ISO3166::Country[@user.profile.from_country]%></li>
-                            <li><i class="fa fa-map-marker" aria-hidden="true"></i>last location</li>
-                            <li><i class="fa fa-venus-mars" aria-hidden="true"></i><%= @user.profile.gender %></li>
-                            <li><i class="fa fa-birthday-cake" aria-hidden="true"></i><%= @user.profile.birth_date %></li>
-                        </ul>
-                    </div><!--//content-->  
-                </div><!--//section-inner-->                 
-            </aside><!--//aside-->  
-            <div class="dynamic">
+            <div class="user_profile_info_div">
+                <%= render :partial => 'profiles/user_profile_partial' %> 
+            </div>
+            <div class="visited_countries_div">
                 <%= render :partial => 'visited_countries/visited_countries_partial' %>    
-            <div>
+            </div>
             <aside class="languages aside section">
                 <div class="section-inner">
                     <h2 class="heading">Languages</h2>
@@ -177,7 +167,7 @@ Your profile image:
 <script type="text/javascript">
   function showVisitedCountryEdit() {
 
-    div = document.getElementById('visited_countries_add');
+    div = document.getElementById('visited_countries_edit');
     var dates = document.querySelectorAll('*[id^="visited_country_remove"]');
 
     if(div.style.display == "none")
@@ -194,6 +184,21 @@ Your profile image:
         {
             dates[i].style.display = "none";
         }
+    }
+}
+function showUserProfileEdit() {
+
+    divedit = document.getElementById('user_profile_edit');
+    divinfo = document.getElementById('user_profile_info');
+
+    if(divinfo.style.display == "none")
+    {
+        divinfo.style.display = "block";
+        divedit.style.display = "none"
+    }
+    else{
+        divinfo.style.display = "none";
+        divedit.style.display = "block"
     }
 }
 </script>

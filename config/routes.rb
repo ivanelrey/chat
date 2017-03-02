@@ -3,7 +3,10 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'home#index'
   resources 'users'
+
   resources 'profiles'
+  post "/profiles/update_profile" => "profiles#update_profile"
+
   resources 'friendships'#, :except => [ :create ]
   post "/friendships/update_friendship" => "friendships#update_friendship"
 
