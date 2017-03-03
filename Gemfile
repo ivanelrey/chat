@@ -46,6 +46,8 @@ gem 'countries'
 gem 'country_select'
 #find location from ip
 gem 'geocoder'
+#remote avatar
+gem 'remotipart', '~> 1.2'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

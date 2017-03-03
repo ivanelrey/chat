@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   resources 'profiles'
   post "/profiles/update_profile" => "profiles#update_profile"
+  post "/profiles/update_profile_about_me" => "profiles#update_profile_about_me"
 
   resources 'friendships'#, :except => [ :create ]
   post "/friendships/update_friendship" => "friendships#update_friendship"
@@ -22,6 +23,8 @@ Rails.application.routes.draw do
   resources 'visited_countries'
   post "visited_countries/add_country" => "visited_countries#add_country"
   post "visited_countries/remove_country" => "visited_countries#remove_country"
+
+  post "posts/create_post" => "posts#create_post"
 
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'

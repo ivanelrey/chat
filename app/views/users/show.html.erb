@@ -49,54 +49,12 @@
 <div class="container sections-wrapper">
     <div class="row">
         <div class="primary col-md-8 col-sm-12 col-xs-12">
-            <section class="about section">
-                <div class="section-inner">
-                    <h2 class="heading">About Me</h2>
-                    <div class="content">
-                        <p><%= @user.profile.about_me %>.</p>
-                    </div><!--//content-->
-                </div><!--//section-inner-->                 
-            </section><!--//section-->
-           <section class="latest section">
-                <div class="section-inner">
-                    <h2 class="heading">Latest Posts</h2>
-                    <div class="content">     
-                        <div class="item row">
-                            <a class="col-md-4 col-sm-4 col-xs-12" href="http://themes.3rdwavemedia.com/website-templates/responsive-bootstrap-theme-for-products-velocity/" target="_blank">
-                            <img class="img-responsive project-image" src="assets/images/projects/project-4.png" alt="project name" />
-                            </a>
-                            <div class="desc col-md-8 col-sm-8 col-xs-12">
-                                <h3 class="title"><a href="http://themes.3rdwavemedia.com/website-templates/responsive-bootstrap-theme-for-products-velocity/" target="_blank">Velocity - Designed for Products</a></h3>
-                                <p>You can put one of your secondary projects here. Suspendisse in tellus dolor. Vivamus a tortor eu turpis pharetra consequat quis non metus. Aliquam aliquam, orci eu suscipit pellentesque, mauris dui tincidunt enim, eget iaculis ante dolor non turpis.</p>
-                                
-                            </div><!--//desc-->                          
-                        </div><!--//item-->
-                        <hr class="divider" />
-                        <div class="item row">
-                            <a class="col-md-4 col-sm-4 col-xs-12" href="https://wrapbootstrap.com/theme/tempo-designed-for-startups-WB07364T3?ref=3wm" target="_blank">
-                            <img class="img-responsive project-image" src="assets/images/projects/project-1.png" alt="project name" />
-                            </a>
-                            <div class="desc col-md-8 col-sm-8 col-xs-12">
-                                <h3 class="title"><a href="https://wrapbootstrap.com/theme/tempo-designed-for-startups-WB07364T3?ref=3wm" target="_blank">Tempo - Designed for Startups</a></h3>
-                                <p>You can put one of your secondary projects here. Suspendisse in tellus dolor. Vivamus a tortor eu turpis pharetra consequat quis non metus. Aliquam aliquam, orci eu suscipit pellentesque, mauris dui tincidunt enim, eget iaculis ante dolor non turpis.</p>
-                                
-                            </div><!--//desc-->                          
-                        </div><!--//item-->   
-                        <hr class="divider" />                    
-                        <div class="item row">
-                            <a class="col-md-4 col-sm-4 col-xs-12" href="https://wrapbootstrap.com/theme/delta-promote-mobile-app-effectively-WB09R23P8?ref=3wm" target="_blank">
-                            <img class="img-responsive project-image" src="assets/images/projects/project-2.png" alt="project name" />
-                            </a>
-                            <div class="desc col-md-8 col-sm-8 col-xs-12">
-                                <h3 class="title"><a href="https://wrapbootstrap.com/theme/delta-promote-mobile-app-effectively-WB09R23P8?ref=3wm" target="_blank">Delta - Designed for Mobile Apps</a></h3>
-                                <p> You can put one of your secondary projects here. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum.</p>
-                                
-                            </div><!--//desc-->                          
-                        </div><!--//item-->
-                        
-                    </div><!--//content-->  
-                </div><!--//section-inner-->                 
-            </section><!--//section-->     
+            <div class="user_profile_about_me_div">
+                <%= render :partial => 'profiles/about_me_partial' %> 
+            </div>
+            <div class="user_posts_div">
+                <%= render :partial => 'posts/posts_partial' %> 
+            </div>
         </div><!--//primary-->
         <div class="secondary col-md-4 col-sm-12 col-xs-12">
             <div class="user_profile_info_div">
@@ -178,7 +136,8 @@ Your profile image:
             dates[i].style.display = "inline-block";
         }
     }
-    else{
+    else
+    {
         div.style.display = "none";
         for (i = 0; i < dates.length; i++)
         {
@@ -196,9 +155,39 @@ function showUserProfileEdit() {
         divinfo.style.display = "block";
         divedit.style.display = "none"
     }
-    else{
+    else
+    {
         divinfo.style.display = "none";
         divedit.style.display = "block"
+    }
+}
+function showUserAboutMeEdit() {
+
+    divedit = document.getElementById('user_about_me_edit');
+    divinfo = document.getElementById('user_about_me');
+
+    if(divinfo.style.display == "none")
+    {
+        divinfo.style.display = "block";
+        divedit.style.display = "none"
+    }
+    else
+    {
+        divinfo.style.display = "none";
+        divedit.style.display = "block"
+    }
+}
+function showUserPostsEdit() {
+
+    divedit = document.getElementById('user_post_edit');
+
+    if(divedit.style.display == "none")
+    {
+        divedit.style.display = "block"
+    }
+    else
+    {
+        divedit.style.display = "none"
     }
 }
 </script>

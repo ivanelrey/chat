@@ -1,0 +1,20 @@
+<section class="about section">
+    <div class="section-inner">
+        <h2 class="heading">About Me
+		<% if (logged_in? && current_user == @user) %>
+        <button onclick="javascript:showUserAboutMeEdit();">
+        <i class="fa fa-cog" aria-hidden="true"></i>
+        </button>
+        <% end %>
+        </h2>
+        <div class="content" id="user_about_me">
+            <p><%= @user.profile.about_me %>.</p>
+        </div><!--//content-->
+        <div class="content" id="user_about_me_edit" style="display: none;">
+            <%= form_for @user.profile, url: profiles_update_profile_about_me_path, method: :post, remote: :true do |f| %>
+                <%= f.text_area :about_me, cols: "80", rows: "5" %><br/>
+                <%= f.submit 'Save'%>
+            <% end %>
+        </div><!--//content-->
+    </div><!--//section-inner-->                 
+</section><!--//section-->

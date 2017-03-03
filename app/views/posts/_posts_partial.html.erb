@@ -1,0 +1,51 @@
+<section class="latest section">
+    <div class="section-inner">
+        <h2 class="heading">Latest Posts
+        <% if (logged_in? && current_user == @user) %>
+        <button onclick="javascript:showUserPostsEdit();">
+        <i class="fa fa-cog" aria-hidden="true"></i>
+        </button>
+        <% end %>
+        </h2>
+           
+        <div class="content" >   
+            <div id="user_post_edit" style="display: none;">
+                <div class="item row">
+                <%= form_for Post.new, url: posts_create_post_path, method: :post, authenticity_token: true,  remote: :true do |f| %>
+                    <a class="col-md-4 col-sm-4 col-xs-12">
+                    <%= f.label :image %><br/>
+                    <%= f.file_field :image, accept: 'image/png,image/jpeg,image/jpg'%>
+                    </a>
+                    <div class="desc col-md-8 col-sm-8 col-xs-12">
+                        <%= f.label :title%>
+                        <h3 class="title"><%= f.text_field :title %><br/></h3>
+                        <%= f.label :text%>
+                        <p><%= f.text_area :text, cols: "40", rows: "3" %><br/></p>
+        
+                    </div><!--//desc--> 
+                    <%= f.submit 'Add post'%>
+                <% end %>                           
+                </div><!--//item-->
+                <hr class="divider" />
+            </div>
+            <% if @user.posts.any? %>
+            <% @user.posts.order(created_at: :desc).each do |post| %>
+                <div class="item row">
+                    <a class="col-md-4 col-sm-4 col-xs-12">
+                    <% if !post.image.blank? %>
+                    <%= image_tag post.image_url, class: 'img-responsive project-image' %>
+                    <% end %>
+                    </a>
+                    <div class="desc col-md-8 col-sm-8 col-xs-12">
+                        <h3 class="title"><%= post.title %></h3>
+                        <p><%= post.text%>.</p>
+                        
+                    </div><!--//desc-->                          
+                </div><!--//item-->
+                <hr class="divider" />
+            <% end %> 
+            <% end %>   
+        </div><!--//content--> 
+
+    </div><!--//section-inner-->                 
+</section><!--//section-->     

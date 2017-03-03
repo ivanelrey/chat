@@ -9,6 +9,7 @@ class User < ApplicationRecord
   	has_many :users_learn_languages
   	has_many :learn_languages, class_name: 'Language',  through: :users_learn_languages , :source => :language
   	has_many :visited_countries
+  	has_many :posts
 	has_secure_password
 	before_save { self.email = email.downcase }
 	validates :username, presence: true, uniqueness: { case_sensitive:false }, 
