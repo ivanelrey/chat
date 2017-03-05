@@ -6,7 +6,12 @@ class LanguagesUsersController < ApplicationController
 	end
 
 	def add_user_language
-		LanguagesUser.create(user_id: current_user.id, language_id: params[:add_language_id])
-		redirect_to languages_path
+		#render plain: params[:languages_user][:language].inspect
+		LanguagesUser.create(user_id: current_user.id, language_id: params[:languages_user][:language], action: "speaks")
+		#redirect_to languages_path
+		@user = User.find(current_user.id)
+		respond_to do |format|
+    		format.js { render :action => "refresh_spoken_languages_div" }
+ 		end
 	end
 end

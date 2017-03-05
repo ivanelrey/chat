@@ -1,0 +1,35 @@
+<aside class="languages aside section">
+    <div class="section-inner">
+        <h2 class="heading">Languages
+        <% if (logged_in? && current_user == @user) %>
+        <button onclick="javascript:showLanguageLevelEdit();">
+        <i class="fa fa-cog" aria-hidden="true"></i>
+        </button>
+        <% end %>
+        </h2>
+        <div class="content">
+            <% if @user.languages.any? %>
+                <ul class="list-unstyled">
+                    <% @user.languages.each do |lang| %>
+                        <li class="item">
+                            <span class="title"><strong><%= lang.language %></strong></span>
+                            <span class="level"><br class="visible-xs"/><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </span>
+                        </li><!--//item-->
+                    <% end %>    
+                    <li class="item">
+                        <span class="title"><strong>Spanish:</strong></span>
+                        <span class="level"> <br class="visible-sm visible-xs"/><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></span>
+                    </li><!--//item-->
+                    <% if @user.learn_languages.any? %>
+                        <% @user.learn_languages.each do |lang| %>
+                            <li class="item">
+                                <span class="title"><strong><%= lang.language %></strong></span>
+                                <span class="level"><br class="visible-xs"/><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </span>
+                            </li><!--//item-->
+                        <% end %>    
+                    <% end %>
+                </ul>
+            <% end %>
+        </div><!--//content-->
+    </div><!--//section-inner-->
+</aside><!--//section-->     

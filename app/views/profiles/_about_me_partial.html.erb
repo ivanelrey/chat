@@ -8,7 +8,7 @@
         <% end %>
         </h2>
         <div class="content" id="user_about_me">
-            <p><%= @user.profile.about_me %>.</p>
+            <p><%= @user.profile.about_me %></p>
         </div><!--//content-->
         <div class="content" id="user_about_me_edit" style="display: none;">
             <%= form_for @user.profile, url: profiles_update_profile_about_me_path, method: :post, remote: :true do |f| %>
