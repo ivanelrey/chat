@@ -1,0 +1,19 @@
+<center>
+<div class="conversation">
+ 		<% if @conversation.any? %>
+<% @conversation.each do |message| %>
+	
+	<li><%= message.text %></li>
+
+<% end %>
+<% end %>
+</div>
+
+<%= form_for Message.new, url: messages_path, method: :post, remote: :true do |f| %>
+    <%= f.text_area :text %>
+    <%= f.hidden_field :receiver_id,  value: @receiver_id  %>
+    <%= f.submit 'send' %>
+<% end %>
+
+</center>
+

@@ -10,6 +10,10 @@ class User < ApplicationRecord
   	has_many :learn_languages, class_name: 'Language',  through: :users_learn_languages , :source => :language
   	has_many :visited_countries
   	has_many :posts
+  	has_many :messages
+  	has_many :sent_messages, :through => :messages
+  	has_many :inverse_messages, :class_name => "Message", :foreign_key => "receiver_id"
+	has_many :received_messages, :through => :inverse_messages, :source => :user
 	has_secure_password
 	before_save { self.email = email.downcase }
 	validates :username, presence: true, uniqueness: { case_sensitive:false }, 

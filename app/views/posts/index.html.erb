@@ -1,0 +1,27 @@
+<div class="container sections-wrapper">
+    <div class="row">
+    	<section class="latest section">
+    		<div class="section-inner">
+    			<div class="content" >   
+					<% if @posts.any? %>
+		            <% @posts.order(created_at: :desc).each do |post| %>
+		                <div class="item row">
+		                    <a class="col-md-4 col-sm-4 col-xs-12">
+		                    <% if !post.image.blank? %>
+		                    <%= image_tag post.image_url, class: 'img-responsive project-image' %>
+		                    <% end %>
+		                    </a>
+		                    <div class="desc col-md-8 col-sm-8 col-xs-12">
+		                        <h3 class="title"><%= post.title %></h3>
+		                        <p><%= post.text%></p>
+		                        
+		                    </div><!--//desc-->                          
+		                </div><!--//item-->
+		                <hr class="divider" />
+		            <% end %> 
+		            <% end %>   
+				</end>
+			</div>
+		</div>
+	</div>
+</div>

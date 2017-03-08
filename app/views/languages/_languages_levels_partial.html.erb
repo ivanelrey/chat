@@ -16,18 +16,6 @@
                             <span class="level"><br class="visible-xs"/><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </span>
                         </li><!--//item-->
                     <% end %>    
-                    <li class="item">
-                        <span class="title"><strong>Spanish:</strong></span>
-                        <span class="level"> <br class="visible-sm visible-xs"/><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></span>
-                    </li><!--//item-->
-                    <% if @user.learn_languages.any? %>
-                        <% @user.learn_languages.each do |lang| %>
-                            <li class="item">
-                                <span class="title"><strong><%= lang.language %></strong></span>
-                                <span class="level"><br class="visible-xs"/><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </span>
-                            </li><!--//item-->
-                        <% end %>    
-                    <% end %>
                 </ul>
             <% end %>
         </div><!--//content-->

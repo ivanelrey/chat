@@ -1,0 +1,32 @@
+<h2 class="desc">Wants to learn 
+<% if (logged_in? && current_user == @user) %>
+    <% if (logged_in? && current_user == @user) %>
+        <button onclick="javascript:showLearnLanguagesEdit();">
+        <i class="fa fa-pencil" aria-hidden="true"></i>
+        </button>
+    <% end %>
+<% end %>
+
+</h2>   
+<ul class="list-inline">
+<% if @user.languages.any? %>
+    <%  @user.languages.each do |lang| %>
+        <% if user_learns_language?(lang.id) %>
+            <li>
+                <%= lang.language %>
+                <%= link_to languages_users_remove_user_learns_language_path(:remove_language_id => lang.id ), method: :post, :remote => true do %>
+                <i id="learn_language_remove_<%= lang.language%>" style="display: none;" class="fa fa-times" aria-hidden="true"></i>
+                <% end %>
+            </li>
+        <% end %>    
+    <% end %>
+<% else %>
+    <li>Not set yet</li> 
+<% end %>   
+<div id="learn_languages_edit" style="display: none;">
+    <%= form_for LanguagesUser.new, url: languages_users_add_user_learns_language_path, method: :post, :remote => true do |f| %>
+    <%= f.collection_select :language, Language.all, :id, :language %>
+    <%= f.submit 'Add' %>
+    <% end %>  
+</div>      
+</ul> 

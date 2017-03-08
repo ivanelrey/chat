@@ -1,0 +1,5 @@
+setTimeout(function(){
+ $('.learning_languages_div').html('<%= j(render partial: "/languages_users/learning_languages") %>')
+ $('.spoken_languages_div').html('<%= j(render partial: "/languages_users/spoken_languages") %>')
+ $('.languages_levels_div').html('<%= j(render partial: "/languages/languages_levels_partial") %>')
+}, 200)

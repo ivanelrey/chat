@@ -1,0 +1,30 @@
+<h2 class="desc">Speaks 
+<% if (logged_in? && current_user == @user) %>
+    <% if (logged_in? && current_user == @user) %>
+        <button onclick="javascript:showSpeakLanguagesEdit();">
+        <i class="fa fa-pencil" aria-hidden="true"></i>
+        </button>
+    <% end %>
+<% end %>
+
+</h2>   
+<ul class="list-inline">
+<% if @user.languages.any? %>
+<%  @user.languages.each do |lang| %>
+	<%if user_knows_language?(lang.id) %>
+	    <li><%= lang.language %>
+	    <%= link_to languages_users_remove_user_language_path(:remove_language_id => lang.id ), method: :post, :remote => true do %>
+	    <i id="spoken_language_remove_<%= lang.language%>" class="fa fa-times" aria-hidden="true" style="display: none;"></i>
+	    <% end %></li> 
+	<% end %>
+<% end %>
+<% else %>
+    <li>Not set yet</li> 
+<% end %>  
+<div id="spoken_languages_edit" style="display: none;">
+    <%= form_for LanguagesUser.new, url: languages_users_add_user_language_path, method: :post, :remote => true do |f| %>
+    <%= f.collection_select :language, Language.all, :id, :language %>
+    <%= f.submit 'Add' %>
+    <% end %>
+</div>
+</ul> 

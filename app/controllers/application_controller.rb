@@ -39,7 +39,8 @@ class ApplicationController < ActionController::Base
   end
 
   def user_knows_language?(language_id)
-    @knows_languages = current_user.languages.where(id: language_id)
+    @knows_languages = LanguagesUser.where(user_id: current_user.id, language_id: language_id, action: "speaks")
+    #@knows_languages = current_user.languages.where(id: language_id)
     if @knows_languages.exists?
       true
     else
@@ -48,8 +49,8 @@ class ApplicationController < ActionController::Base
   end
 
   def user_learns_language?(language_id)
-    @knows_languages = current_user.learn_languages.where(id: language_id)
-    if @knows_languages.exists?
+    @learns_languages = LanguagesUser.where(user_id: current_user.id, language_id: language_id, action: "learns")
+    if @learns_languages.exists?
       true
     else
       false

@@ -7,28 +7,18 @@
     <div class="profile-content pull-left">
         <h1 class="name"><%= @user.username %></h1>
         <div class="spoken_languages_div">
-            <%= render :partial => 'languages/spoken_languages'%>
+            <%= render :partial => 'languages_users/spoken_languages'%>
         </div>
-        <h2 class="desc">Wants to learn 
-        <% if (logged_in? && current_user == @user) %>
-            <a href='/languages/learns_languages'><i class="fa fa-pencil" aria-hidden="true"></i></a>
-        <% end %>
-        </h2>   
-        <ul class="social list-inline">
-        <% if @user.learn_languages.any? %>
-        <%  @user.learn_languages.each do |lang| %>
-            <li><%= lang.language %></li> 
-        <% end %>
-        <% else %>
-            <li>Not set yet</li> 
-        <% end %>                  
-        </ul> 
+        <div class="learning_languages_div">
+            <%= render :partial => 'languages_users/learning_languages'%>
+        </div>
     </div><!--//profile-->    
     <% if (logged_in? && current_user == @user) %>
 		<%= link_to 'Edit profile', edit_profile_path(@user.profile.id), class: 'btn-cta-primary pull-right fa fa-cog' %><br/>
 		<%= link_to 'Your friends', friendships_path, class: 'btn-cta-primary pull-right' %><br/>
 		<%= link_to 'All users', users_path,  class: 'btn-cta-primary pull-right' %><br/>
 	<% else %>
+    <%= link_to 'Messsage', message_path(@user.id), class: 'btn-cta-primary pull-right fa fa-cog' %><br/>
 		<%= link_to 'Back to your profile', user_path(current_user.id), class: 'btn-cta-primary pull-right' %><br/>
 	<% end %>
     <!--<a class="btn btn-cta-primary pull-right" href="http://themes.3rdwavemedia.com/" target="_blank"><i class="fa fa-paper-plane"></i> Contact Me</a>  -->            
@@ -125,6 +115,50 @@ function showUserPostsEdit() {
     else
     {
         divedit.style.display = "none"
+    }
+}
+function showLearnLanguagesEdit() {
+
+    div = document.getElementById('learn_languages_edit');
+    var dates = document.querySelectorAll('*[id^="learn_language_remove"]');
+
+    if(div.style.display == "none")
+    {
+        div.style.display = "inline-block";
+        for (i = 0; i < dates.length; i++)
+        {
+            dates[i].style.display = "inline-block";
+        }
+    }
+    else
+    {
+        div.style.display = "none";
+        for (i = 0; i < dates.length; i++)
+        {
+            dates[i].style.display = "none";
+        }
+    }
+}
+function showSpeakLanguagesEdit() {
+
+    div = document.getElementById('spoken_languages_edit');
+    var dates = document.querySelectorAll('*[id^="spoken_language_remove"]');
+
+    if(div.style.display == "none")
+    {
+        div.style.display = "inline-block";
+        for (i = 0; i < dates.length; i++)
+        {
+            dates[i].style.display = "inline-block";
+        }
+    }
+    else
+    {
+        div.style.display = "none";
+        for (i = 0; i < dates.length; i++)
+        {
+            dates[i].style.display = "none";
+        }
     }
 }
 </script>

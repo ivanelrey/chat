@@ -1,27 +1,36 @@
-<h1>All registered users</h1>
-<% @users.each do |user|%>
-	<ul>
-		<li>
-			username: <%= user.username %> ||
-			id: <%= user.id %> ||
-			<!--birth date: < % =#user. p rofile.birth_date %>-->
-			<%= link_to 'Show profile', user_path(user.id) %> || 
-			<% if friendship_request_sent?(user)  %>
-				<% if  friendship_request_accepted?(user.id) %>
-			 		<span>You are friends</span>
-			 	<% elsif friendship_request_accepted?(user.id) == false %>
-			 		<% if user.in?current_user.friends %>
-			 			<span>Pending</span>
-			 		<% elsif current_user.in?user.friends %>
-			 			<%= link_to 'accept request', friendships_update_friendship_path(friend_id: user.id), method: :post %>
-			 		<% end %>
-			 	<% end %>
-			<% else %>
-			<%= link_to 'add friend', friendships_path(:user_id => current_user.id, :friend_id => user.id), method: :post %>
-			<% end %> 
-
-
-		</li>
-	</ul>
-<% end %>
-<%= link_to 'Back to your profile', user_path(current_user.id) %><br/>
+<center><h1>All registered users</h1></center>
+<div class="container sections-wrapper">
+    <div class="row">
+    	<section class="latest section">
+    		<div class="section-inner">
+    			<div class="content" > 
+				<% if @users.any? %>
+					<% @users.each do |user|%>
+					<ul>
+						<li>
+							username: <%= user.username %> ||
+							id: <%= user.id %> ||
+							<!--birth date: < % =#user. p rofile.birth_date %>-->
+							<%= link_to 'Show profile', user_path(user.id) %> || 
+							<% if friendship_request_sent?(user)  %>
+								<% if  friendship_request_accepted?(user.id) %>
+							 		<span>You are friends</span>
+							 	<% elsif friendship_request_accepted?(user.id) == false %>
+							 		<% if user.in?current_user.friends %>
+							 			<span>Pending</span>
+							 		<% elsif current_user.in?user.friends %>
+							 			<%= link_to 'accept request', friendships_update_friendship_path(friend_id: user.id), method: :post %>
+							 		<% end %>
+							 	<% end %>
+							<% else %>
+							<%= link_to 'add friend', friendships_path(:user_id => current_user.id, :friend_id => user.id), method: :post %>
+							<% end %> 
+						</li>
+					</ul>
+					<% end %>
+				<% end %>
+				<%= link_to 'Back to your profile', user_path(current_user.id) %><br/>
+			</div>
+		</div>
+	</div>
+</div>

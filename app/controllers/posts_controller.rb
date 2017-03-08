@@ -1,5 +1,9 @@
 class PostsController < ApplicationController
 
+	def index
+		@posts = Post.all
+	end
+
 	def create_post
 		#render plain: params[:post][:title].inspect
 		Post.create(user_id: current_user.id, title: params[:post][:title], text: params[:post][:text], image: params[:post][:image])

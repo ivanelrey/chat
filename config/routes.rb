@@ -16,6 +16,8 @@ Rails.application.routes.draw do
 
   post "/languages_users/remove_user_language" => "languages_users#remove_user_language"
   post "/languages_users/add_user_language" => "languages_users#add_user_language"
+  post "/languages_users/remove_user_learns_language" => "languages_users#remove_user_learns_language"
+  post "/languages_users/add_user_learns_language" => "languages_users#add_user_learns_language"
 
   post "/users_learn_languages/remove_user_learns_language" => "users_learn_languages#remove_user_learns_language"
   post "/users_learn_languages/add_user_learns_language" => "users_learn_languages#add_user_learns_language"
@@ -24,7 +26,11 @@ Rails.application.routes.draw do
   post "visited_countries/add_country" => "visited_countries#add_country"
   post "visited_countries/remove_country" => "visited_countries#remove_country"
 
+  resources 'posts'
   post "posts/create_post" => "posts#create_post"
+
+  resources 'messages', only: [:show, :create]
+  #get "/messages/show_conversation" => "messages#show_conversation"
 
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
