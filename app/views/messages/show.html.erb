@@ -1,12 +1,6 @@
 <center>
 <div class="conversation">
- 		<% if @conversation.any? %>
-<% @conversation.each do |message| %>
-	
-	<li><%= message.text %></li>
-
-<% end %>
-<% end %>
+ 	<%= render @messages %>
 </div>
 
 <%= form_for Message.new, url: messages_path, method: :post, remote: :true do |f| %>

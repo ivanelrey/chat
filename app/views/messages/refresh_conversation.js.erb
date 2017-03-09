@@ -1,4 +1,3 @@
-$(".conversation").bind('click',function(){
-    //post to the controller/action/params
-    $.post("/messages/show");
-  });
+setTimeout(function(){
+ $('.conversation').html('<%= j(render partial: "/messages/conversation") %>')
+}, 200)
