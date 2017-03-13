@@ -1,3 +1,11 @@
-<div class="messages">
-	<%= message.text %>
-</div>
+<% if message.user== current_user %>
+      <div class="bubble">
+        <p><%= message.text %></p>
+      </div>
+      <span class="datestamp"><%= message.created_at %></span>
+<% else %>
+      <div class="bubble bubble-alt">
+        <p><%= message.text %></p>
+      </div>
+      <span class="datestamp  dt-alt"><%= message.created_at %></span>
+<% end %>

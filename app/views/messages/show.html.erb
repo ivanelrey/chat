@@ -1,6 +1,11 @@
 <center>
-<div class="conversation">
- 	<%= render @messages %>
+<div class="messages">
+<div id='chat' class="chat">
+    <div class="chat-container active" id='cont1'>
+
+ 		<%= render @messages %>
+	</div>
+</div>
 </div>
 
 <%= form_for Message.new, url: messages_path, method: :post, remote: :true do |f| %>
@@ -8,6 +13,12 @@
     <%= f.hidden_field :receiver_id,  value: @receiver_id  %>
     <%= f.submit 'send' %>
 <% end %>
-
+	<div class="chat-control">
+    <input class="chat-input" type="text" placeholder="enter your message" />
+  	</div>
 </center>
 
+  
+
+
+<!-- http://codepen.io/jdniki/pen/LNdZLo %>

@@ -18,5 +18,6 @@
 //= require turbolinks
 //= require main
 //= require min/main-min
+//= require cable
 
 
