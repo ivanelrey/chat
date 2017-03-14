@@ -1,22 +1,26 @@
-<center>
-<div class="messages">
-<div id='chat' class="chat">
-    <div class="chat-container active" id='cont1'>
 
- 		<%= render @messages %>
+<%= stylesheet_link_tag "chat_style"%>
+
+
+<div class="chat-box">
+  	<div id='chat' class="chat">
+	    <div id="chat-container" class="chat-container active messages">
+	 		<%= render @messages %>
+		</div>
 	</div>
-</div>
-</div>
-
-<%= form_for Message.new, url: messages_path, method: :post, remote: :true do |f| %>
-    <%= f.text_area :text %>
-    <%= f.hidden_field :receiver_id,  value: @receiver_id  %>
-    <%= f.submit 'send' %>
-<% end %>
 	<div class="chat-control">
-    <input class="chat-input" type="text" placeholder="enter your message" />
+    	<%= form_for Message.new, url: messages_path, method: :post, remote: :true do |f| %>
+		    <%= f.text_field :text, class: 'chat-input', placeholder: "enter your message" %>
+		    <%= f.hidden_field :receiver_id,  value: @receiver_id  %>
+		    <%= f.submit 'send' %>
+		<% end %>
   	</div>
-</center>
+</div>
+<%= javascript_include_tag "chat_js" %>
+
+
+
+	
 
   
 
