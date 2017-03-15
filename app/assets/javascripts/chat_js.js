@@ -1,2 +1,2 @@
-var element = document.getElementById("chat-container");
-element.scrollTop = element.scrollHeight;
+var objDiv = document.getElementById("chat-container");
+objDiv.scrollTop = objDiv.scrollHeight;

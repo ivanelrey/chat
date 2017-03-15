@@ -7,4 +7,6 @@ App.chat = App.cable.subscriptions.create "ChatChannel",
 
   received: (data) ->
     $('.messages').append data['message']
+    $('#chat-container').scrollTop($('#chat-container')[0].scrollHeight);
     return
+    

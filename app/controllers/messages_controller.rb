@@ -13,12 +13,11 @@ class MessagesController < ApplicationController
 		message = Message.create(user_id: current_user.id, receiver_id: params[:message][:receiver_id], text: params[:message][:text])
 		#@conversation = current_user.messages.where(receiver_id: params[:message][:receiver_id]) + current_user.inverse_messages.where(user_id: params[:message][:receiver_id])
 		#@conversation = @conversation.sort_by{|e| e[:created_at]}
-		@receiver_id = current_user.id
 		
  		ActionCable.server.broadcast "chat", {
  			message: MessagesController.render(
  				partial: 'message',
- 				locals: { message: message }
+ 				locals: { message: message , sender_id: current_user.id }
  			).squish
  		}
 	end
